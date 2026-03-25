@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos | FRUIT JULS</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      ::selection { background-color: #ec4899; color: white; }
+      
+      /* Ocultar barra de scroll en el modal y carrito para que se vea más limpio */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+  </head>
+  <body class="min-h-screen bg-black text-neutral-200 font-sans relative">
+    
+    <!-- ========================================== -->
+    <!-- NAVBAR                                     -->
+    <!-- ========================================== -->
+    <nav id="navbar" class="fixed w-full z-40 transition-all duration-300 bg-black/90 backdrop-blur-md shadow-lg shadow-pink-500/10 py-3">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <!-- Logo Text -->
+          <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-500 to-blue-500 hover:opacity-80 transition-opacity">
+              FRUIT JULS
+            </a>
+          </div>
+
+          <!-- Menú Escritorio -->
+          <div class="hidden md:flex space-x-8 items-center">
+            <a href="index.html" class="text-neutral-300 hover:text-pink-400 transition-colors font-medium">Inicio</a>
+            <a href="nosotros.html" class="text-neutral-300 hover:text-orange-400 transition-colors font-medium">Nosotros</a>
+            <a href="productos.html" class="text-green-400 transition-colors font-bold">Productos</a>
+            <a href="faq.html" class="text-neutral-300 hover:text-pink-400 transition-colors font-medium">FAQ</a>
+            <a href="contacto.html" class="text-neutral-300 hover:text-blue-400 transition-colors font-medium">Contacto</a>
+          </div>
+
+          <!-- Botón de Carrito y Menú Móvil -->
+          <div class="flex items-center gap-4">
+            <button onclick="toggleCart()" class="relative text-white hover:text-pink-400 transition-colors p-2 bg-neutral-900 rounded-full border border-neutral-800">
+              <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+              <span id="cart-count" class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
+            </button>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-neutral-200 hover:text-white focus:outline-none ml-2">
+              <i id="menu-icon" data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menú Móvil -->
+      <div id="mobile-menu" class="hidden md:hidden bg-neutral-900 border-t border-neutral-800 absolute w-full left-0 top-full shadow-2xl">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="index.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-pink-400 hover:bg-neutral-800 rounded-md">Inicio</a>
+          <a href="nosotros.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-orange-400 hover:bg-neutral-800 rounded-md">Nosotros</a>
+          <a href="productos.html" class="block px-3 py-2 text-base font-bold text-green-400 bg-neutral-800/50 rounded-md">Productos</a>
+          <a href="faq.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-pink-400 hover:bg-neutral-800 rounded-md">FAQ</a>
+          <a href="contacto.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-blue-400 hover:bg-neutral-800 rounded-md">Contacto</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- CONTENIDO PRINCIPAL: CATÁLOGO              -->
+    <!-- ========================================== -->
+    <main class="pt-32 pb-24 bg-neutral-950 min-h-screen">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Encabezado del catálogo y Filtros -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 border-b border-neutral-800 pb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-neutral-800 mb-4 text-sm font-semibold text-green-400">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Tienda en línea</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Catálogo de <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">Productos</span></h1>
+            <p class="text-neutral-400 max-w-xl">Selecciona tus favoritos y añádelos al carrito. Haz clic en cualquier producto para ver más detalles.</p>
+          </div>
+          
+          <!-- Filtro Visual (Conectado a JavaScript) -->
+          <div class="flex gap-2 overflow-x-auto no-scrollbar pb-2 w-full md:w-auto">
+            <button onclick="filterProducts('todos', this)" class="filter-btn active whitespace-nowrap px-4 py-2 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 text-sm font-bold transition-colors">Todos</button>
+            <button onclick="filterProducts('frutas', this)" class="filter-btn whitespace-nowrap px-4 py-2 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800 hover:text-white text-sm font-medium transition-colors">Frutas Secas</button>
+            <button onclick="filterProducts('semillas', this)" class="filter-btn whitespace-nowrap px-4 py-2 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800 hover:text-white text-sm font-medium transition-colors">Semillas y Nueces</button>
+            <button onclick="filterProducts('enchilados', this)" class="filter-btn whitespace-nowrap px-4 py-2 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800 hover:text-white text-sm font-medium transition-colors">Mixes Enchilados</button>
+          </div>
+        </div>
+
+        <!-- Contenedor de la cuadrícula de productos -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Los productos se inyectarán aquí mediante JS -->
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- FOOTER                                     -->
+    <!-- ========================================== -->
+    <footer class="bg-black py-12 border-t border-neutral-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">FRUIT JULS</span>
+          </div>
+          <p class="text-neutral-500 text-sm text-center md:text-left">
+            &copy; <span id="year"></span> FRUIT JULS. Todos los derechos reservados. <br class="md:hidden" /> Hecho en México.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- MODAL DE DETALLE DEL PRODUCTO              -->
+    <!-- ========================================== -->
+    <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+      <div class="bg-neutral-900 w-full max-w-4xl max-h-[90vh] md:max-h-[80vh] rounded-2xl md:rounded-3xl border border-neutral-800 overflow-hidden flex flex-col md:flex-row relative transform scale-95 transition-transform duration-300" id="modal-content">
+        
+        <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-pink-500 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <div class="w-full md:w-1/2 h-64 md:h-auto bg-neutral-950 relative">
+          <img id="modal-img" src="" alt="Producto" class="w-full h-full object-cover" />
+          <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-neutral-700 text-xs font-bold text-white uppercase">100% Natural</div>
+        </div>
+
+        <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col overflow-y-auto no-scrollbar">
+          <div class="inline-flex items-center gap-1 text-orange-400 text-sm font-bold mb-2">
+            <i data-lucide="star" class="w-4 h-4 fill-orange-400"></i> Calidad Premium
+          </div>
+          <h2 id="modal-title" class="text-3xl font-bold text-white mb-2">Nombre</h2>
+          <p id="modal-price" class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-6">$0.00 MXN</p>
+          <h3 class="text-sm text-neutral-500 uppercase font-bold tracking-wider mb-2">Descripción</h3>
+          <p id="modal-desc" class="text-neutral-300 leading-relaxed mb-6">Descripción del producto.</p>
+          <h3 class="text-sm text-neutral-500 uppercase font-bold tracking-wider mb-2">Ingredientes / Notas</h3>
+          <p id="modal-details" class="text-neutral-400 text-sm mb-8 bg-neutral-950 p-4 rounded-xl border border-neutral-800">Detalles adicionales.</p>
+          <div class="mt-auto">
+            <button id="modal-add-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 to-pink-600 text-white font-bold hover:shadow-lg hover:shadow-pink-500/40 transition-all flex justify-center items-center gap-2 transform hover:-translate-y-1">
+              <i data-lucide="shopping-cart" class="w-5 h-5"></i> Agregar al Carrito
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDEOVER DEL CARRITO DE COMPRAS           -->
+    <!-- ========================================== -->
+    <div id="cart-slideover" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+      <!-- Fondo oscuro clicable -->
+      <div class="absolute inset-0" onclick="toggleCart()"></div>
+      
+      <!-- Panel -->
+      <div id="cart-panel" class="w-full max-w-md bg-neutral-900 h-full border-l border-neutral-800 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 relative z-10">
+        <div class="flex justify-between items-center p-6 border-b border-neutral-800 bg-black/50">
+          <h2 class="text-xl font-bold flex items-center gap-2 text-white">
+            <i data-lucide="shopping-bag" class="text-pink-500"></i> Tu Carrito
+          </h2>
+          <button onclick="toggleCart()" class="text-neutral-400 hover:text-white transition-colors">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 no-scrollbar">
+          <div id="empty-cart-msg" class="text-center text-neutral-500 mt-20 flex flex-col items-center">
+            <i data-lucide="shopping-cart" class="w-16 h-16 mb-4 opacity-20"></i>
+            <p>Tu carrito está vacío.</p>
+            <button onclick="toggleCart()" class="text-pink-400 mt-4 underline text-sm">Seguir comprando</button>
+          </div>
+        </div>
+
+        <div class="p-6 border-t border-neutral-800 bg-black/80 backdrop-blur-md">
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-neutral-400">Total a pagar:</span>
+            <span id="cart-total-price" class="text-3xl font-black text-white">$0.00</span>
+          </div>
+          <button onclick="checkout()" class="w-full py-4 rounded-xl bg-green-600 text-white font-bold hover:bg-green-500 hover:shadow-lg hover:shadow-green-500/30 transition-all flex justify-center items-center gap-2">
+            Proceder al Pago <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+          <p class="text-xs text-neutral-600 text-center mt-3">* El envío se calcula en el siguiente paso.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- LÓGICA JAVASCRIPT                          -->
+    <!-- ========================================== -->
+    <script>
+      // Inicializar iconos y fecha
+      lucide.createIcons();
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // --- MENÚ MÓVIL Y NAVBAR ---
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuIcon = document.getElementById("menu-icon");
+      let isMenuOpen = false;
+
+      mobileMenuBtn.addEventListener("click", () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          mobileMenu.classList.remove("hidden");
+          menuIcon.setAttribute("data-lucide", "x");
+        } else {
+          mobileMenu.classList.add("hidden");
+          menuIcon.setAttribute("data-lucide", "menu");
+        }
+        lucide.createIcons();
+      });
+
+      // --- BASE DE DATOS DE PRODUCTOS ---
+      // Categorías posibles: 'frutas', 'semillas', 'enchilados'
+      const productsDB = [
+        { id: 1, name: "Mix Tropical", category: "frutas", price: 85, img: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Mezcla dulce y exótica de mango, piña, papaya y coco deshidratado.", details: "Ideal para el desayuno o snack a media tarde. Sin azúcares." },
+        { id: 2, name: "Nuez Pecana Premium", category: "semillas", price: 120, img: "https://images.unsplash.com/photo-1564149504298-00c351fd7f16?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Nuez pecana entera, fresca y crujiente de la más alta calidad.", details: "Origen: Chihuahua, México. Rica en antioxidantes." },
+        { id: 3, name: "Cacahuate Artesanal", category: "enchilados", price: 45, img: "https://images.unsplash.com/photo-1536511132770-e5058c7e8c46?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Cacahuates tostados al comal con sal de mar, toque de ajo y chile guajillo.", details: "Receta tradicional. Nivel de picante: Leve." },
+        { id: 4, name: "Mango Enchilado", category: "enchilados", price: 70, img: "https://images.unsplash.com/photo-1628557044797-f21a177c37ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Láminas de mango deshidratado cubiertas con chiles en polvo.", details: "El balance perfecto entre dulce, ácido y picante." },
+        { id: 5, name: "Almendras Tostadas", category: "semillas", price: 110, img: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Almendras tostadas a la perfección sin sal ni aceites añadidos.", details: "Excelente fuente de proteína vegetal y vitamina E." },
+        { id: 6, name: "Arándanos Dulces", category: "frutas", price: 65, img: "https://images.unsplash.com/photo-1590080826456-e97262dfc9aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Arándanos deshidratados jugosos y ligeramente endulzados.", details: "Perfectos para ensaladas, avena o repostería." },
+        { id: 7, name: "Pistaches con Sal", category: "semillas", price: 140, img: "https://images.unsplash.com/photo-1572889658252-7104b9015bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Pistaches tostados con cáscara y un toque de sal marina fina.", details: "Calibre grande. Fácil de abrir y extremadamente adictivos." },
+        { id: 8, name: "Piña Enchilada", category: "enchilados", price: 68, img: "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Trozos de piña miel deshidratada bañada en chamoy artesanal.", details: "Textura suave y sabor intenso. Nivel de picante: Medio." },
+        { id: 9, name: "Mix Energético", category: "semillas", price: 95, img: "https://images.unsplash.com/photo-1608931215264-e4016e7af2c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Poderosa mezcla de almendras, nuez, pepitas y arándanos.", details: "El impulso necesario antes o después del gimnasio." },
+        { id: 10, name: "Nuez de la India", category: "semillas", price: 150, img: "https://images.unsplash.com/photo-1563234919-867db244eecb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Nuez de la India (Anacardo) entera, cruda y sin sal.", details: "Sabor cremoso. Ideal para leches vegetales o quesos veganos." },
+        { id: 11, name: "Pepita Calabaza", category: "semillas", price: 55, img: "https://images.unsplash.com/photo-1563116544-23fb04000302?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Semillas de calabaza tostadas y saladas al estilo tradicional.", details: "Snack clásico, empacado para conservar su frescura." },
+        { id: 12, name: "Cacahuate Japonés", category: "enchilados", price: 40, img: "https://images.unsplash.com/photo-1621217646536-e630cc67ea9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Cacahuate cubierto con capa crujiente sabor salsa de soya.", details: "El acompañante perfecto para una reunión." },
+        { id: 13, name: "Manzana con Canela", category: "frutas", price: 60, img: "https://images.unsplash.com/photo-1560806887-1e4cd0b6fac6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Chips de manzana horneada espolvoreados con canela de Ceilán.", details: "Una alternativa saludable a las papas fritas." },
+        { id: 14, name: "Mix Salado Bar", category: "enchilados", price: 80, img: "https://images.unsplash.com/photo-1517454271037-7f97577a4eb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Cacahuates, habas tostadas, garbanzos y churritos de maíz.", details: "Salado, crujiente y con un ligero toque de chile." },
+        { id: 15, name: "Nuez de Macadamia", category: "semillas", price: 180, img: "https://images.unsplash.com/photo-1634458316239-16a7e0f80bc4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "La reina de las nueces. Sabor mantecoso inconfundible.", details: "Producto Premium. Alta en grasas monoinsaturadas." },
+        { id: 16, name: "Coco Rallado", category: "frutas", price: 50, img: "https://images.unsplash.com/photo-1610842220137-b6f722e11831?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Hojuelas gruesas de coco deshidratado natural sin azúcar.", details: "Textura crujiente. Perfecto para bowls o yogurt." },
+        { id: 17, name: "Cacahuate Enchilado", category: "enchilados", price: 45, img: "https://images.unsplash.com/photo-1596489397635-c4779de091e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Cacahuates fritos cubiertos en polvo de chile de árbol y limón.", details: "Muy picante. Solo para valientes." },
+        { id: 18, name: "Dátiles Medjool", category: "frutas", price: 115, img: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Dátiles gigantes, jugosos y suaves con sabor a caramelo natural.", details: "El endulzante natural por excelencia." },
+        { id: 19, name: "Haba Enchilada", category: "enchilados", price: 55, img: "https://images.unsplash.com/photo-1582294444558-85497063625e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Habas secas tostadas, marinadas en salsa picante.", details: "Un clásico de las tienditas mexicanas, versión premium." },
+        { id: 20, name: "Semilla de Girasol", category: "semillas", price: 40, img: "https://images.unsplash.com/photo-1599596470366-51214dc87121?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80", desc: "Corazones de semilla de girasol peladas y crudas.", details: "Ideales para complementar tus ensaladas o batidos." }
+      ];
+
+      // --- LÓGICA DE FILTRADO Y RENDERIZADO ---
+      const grid = document.getElementById('products-grid');
+
+      function renderProducts(category = 'todos') {
+        grid.innerHTML = '';
+        
+        const filteredProducts = category === 'todos' 
+            ? productsDB 
+            : productsDB.filter(p => p.category === category);
+
+        if (filteredProducts.length === 0) {
+            grid.innerHTML = `<p class="text-neutral-500 col-span-full text-center py-10">No hay productos en esta categoría.</p>`;
+            return;
+        }
+
+        filteredProducts.forEach(product => {
+          const card = document.createElement('div');
+          card.className = "bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 hover:border-pink-500/50 group hover:shadow-2xl hover:shadow-pink-500/10 transition-all cursor-pointer flex flex-col";
+          card.onclick = () => openModal(product.id);
+          
+          card.innerHTML = `
+            <div class="h-48 overflow-hidden relative">
+              <img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+            </div>
+            <div class="p-5 flex flex-col flex-grow">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-bold text-white leading-tight">${product.name}</h3>
+              </div>
+              <p class="font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500 mb-4">$${product.price.toFixed(2)}</p>
+              <p class="text-neutral-500 text-xs line-clamp-2 mb-4 flex-grow">${product.desc}</p>
+              <button onclick="event.stopPropagation(); addToCart(${product.id})" class="w-full py-2.5 rounded-lg bg-neutral-800 hover:bg-white hover:text-black text-white font-bold transition-all text-sm flex justify-center items-center gap-2">
+                <i data-lucide="plus" class="w-4 h-4"></i> Añadir
+              </button>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+        
+        lucide.createIcons();
+      }
+
+      function filterProducts(category, btnElement) {
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => {
+          btn.className = "filter-btn whitespace-nowrap px-4 py-2 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800 hover:text-white text-sm font-medium transition-colors";
+        });
+
+        btnElement.className = "filter-btn active whitespace-nowrap px-4 py-2 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 text-sm font-bold transition-colors";
+
+        renderProducts(category);
+      }
+
+      // Iniciar catálogo
+      renderProducts('todos');
+
+      // --- LÓGICA DEL MODAL ---
+      const modal = document.getElementById('product-modal');
+      const modalContent = document.getElementById('modal-content');
+      const modalAddBtn = document.getElementById('modal-add-btn');
+
+      function openModal(id) {
+        const product = productsDB.find(p => p.id === id);
+        if(!product) return;
+
+        document.getElementById('modal-img').src = product.img;
+        document.getElementById('modal-title').textContent = product.name;
+        document.getElementById('modal-price').textContent = `$${product.price.toFixed(2)} MXN`;
+        document.getElementById('modal-desc').textContent = product.desc;
+        document.getElementById('modal-details').textContent = product.details;
+        
+        modalAddBtn.onclick = () => {
+          addToCart(product.id);
+          closeModal();
+          toggleCart(); 
+        };
+
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          modal.classList.remove('opacity-0');
+          modalContent.classList.remove('scale-95');
+        }, 10);
+      }
+
+      function closeModal() {
+        modal.classList.add('opacity-0');
+        modalContent.classList.add('scale-95');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 300);
+      }
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // --- LÓGICA DEL CARRITO ---
+      let cart = [];
+      const cartSlideover = document.getElementById('cart-slideover');
+      const cartPanel = document.getElementById('cart-panel');
+      const cartItemsContainer = document.getElementById('cart-items-container');
+      const emptyCartMsg = document.getElementById('empty-cart-msg');
+      const cartCountBadge = document.getElementById('cart-count');
+      const cartTotalPrice = document.getElementById('cart-total-price');
+      let isCartOpen = false;
+
+      function toggleCart() {
+        isCartOpen = !isCartOpen;
+        if (isCartOpen) {
+          cartSlideover.classList.remove('hidden');
+          updateCartUI();
+          setTimeout(() => {
+            cartSlideover.classList.remove('opacity-0');
+            cartPanel.classList.remove('translate-x-full');
+          }, 10);
+        } else {
+          cartSlideover.classList.add('opacity-0');
+          cartPanel.classList.add('translate-x-full');
+          setTimeout(() => {
+            cartSlideover.classList.add('hidden');
+          }, 300);
+        }
+      }
+
+      function addToCart(productId) {
+        const product = productsDB.find(p => p.id === productId);
+        const existingItem = cart.find(item => item.id === productId);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ ...product, quantity: 1 });
+        }
+        
+        cartCountBadge.classList.add('scale-150');
+        setTimeout(() => cartCountBadge.classList.remove('scale-150'), 200);
+        updateCartUI();
+      }
+
+      function removeFromCart(productId) {
+        cart = cart.filter(item => item.id !== productId);
+        updateCartUI();
+      }
+
+      function changeQuantity(productId, delta) {
+        const item = cart.find(i => i.id === productId);
+        if (item) {
+          item.quantity += delta;
+          if (item.quantity <= 0) {
+            removeFromCart(productId);
+          } else {
+            updateCartUI();
+          }
+        }
+      }
+
+      function updateCartUI() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCountBadge.textContent = totalItems;
+        
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = '';
+          cartItemsContainer.appendChild(emptyCartMsg);
+          cartTotalPrice.textContent = "$0.00";
+          return;
+        }
+
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+
+        cart.forEach(item => {
+          total += (item.price * item.quantity);
+          const itemDiv = document.createElement('div');
+          itemDiv.className = "flex items-center gap-4 bg-black/40 p-3 rounded-xl border border-neutral-800";
+          itemDiv.innerHTML = `
+            <img src="${item.img}" class="w-16 h-16 object-cover rounded-lg" />
+            <div class="flex-1">
+              <h4 class="text-sm font-bold text-white line-clamp-1">${item.name}</h4>
+              <p class="text-pink-400 font-bold text-sm">$${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-3 mt-2">
+                <div class="flex items-center bg-neutral-800 rounded-md">
+                  <button onclick="changeQuantity(${item.id}, -1)" class="px-2 py-1 text-neutral-400 hover:text-white">-</button>
+                  <span class="text-xs font-bold w-4 text-center">${item.quantity}</span>
+                  <button onclick="changeQuantity(${item.id}, 1)" class="px-2 py-1 text-neutral-400 hover:text-white">+</button>
+                </div>
+                <button onclick="removeFromCart(${item.id})" class="text-xs text-neutral-500 hover:text-red-400 underline ml-auto">Quitar</button>
+              </div>
+            </div>
+          `;
+          cartItemsContainer.appendChild(itemDiv);
+        });
+        cartTotalPrice.textContent = `$${total.toFixed(2)}`;
+      }
+
+      function checkout() {
+        if(cart.length === 0) {
+          alert("Tu carrito está vacío.");
+          return;
+        }
+        alert("¡Esta es una demo! Aquí iría el proceso de pago.");
+        cart = [];
+        updateCartUI();
+        toggleCart();
+      }
+    </script>
+  </body>
+</html>

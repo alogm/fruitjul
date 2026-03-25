@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nosotros | FRUIT JULS</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      /* Personalización de la selección de texto para mantener el toque neón */
+      ::selection {
+        background-color: #ec4899; /* pink-500 */
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-black text-neutral-200 font-sans">
+    
+    <!-- NAVBAR -->
+    <nav
+      id="navbar"
+      class="fixed w-full z-50 transition-all duration-300 bg-transparent py-5"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <!-- Logo Text -->
+          <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-500 to-blue-500 hover:opacity-80 transition-opacity">
+              FRUIT JULS
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-8 items-center">
+            <!-- Nota: Enlaces actualizados a .html -->
+            <a href="index.html" class="text-neutral-300 hover:text-pink-400 transition-colors font-medium">Inicio</a>
+            <!-- Página activa resaltada -->
+            <a href="nosotros.html" class="text-orange-400 transition-colors font-bold">Nosotros</a>
+            <a href="productos.html" class="text-neutral-300 hover:text-green-400 transition-colors font-medium">Productos</a>
+            <a href="contacto.html" class="text-neutral-300 hover:text-blue-400 transition-colors font-medium">Contacto</a>
+            <a href="productos.html" class="bg-gradient-to-r from-orange-500 to-pink-600 text-white px-5 py-2 rounded-full font-bold hover:shadow-lg hover:shadow-pink-500/30 transition-all transform hover:-translate-y-0.5">
+              Comprar Ahora
+            </a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-btn" class="text-neutral-200 hover:text-white focus:outline-none">
+              <i id="menu-icon" data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-neutral-900 border-t border-neutral-800 absolute w-full left-0 top-full shadow-2xl">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="index.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-pink-400 hover:bg-neutral-800 rounded-md">Inicio</a>
+          <a href="nosotros.html" class="block px-3 py-2 text-base font-bold text-orange-400 bg-neutral-800/50 rounded-md">Nosotros</a>
+          <a href="productos.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-green-400 hover:bg-neutral-800 rounded-md">Productos</a>
+          <a href="contacto.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-blue-400 hover:bg-neutral-800 rounded-md">Contacto</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT: NOSOTROS -->
+    <!-- Agregamos min-h-screen y pt-36 para compensar el navbar fijo y centrar el contenido -->
+    <main class="min-h-screen bg-neutral-950 relative pt-36 pb-24 flex items-center border-b border-neutral-900">
+      <!-- Brillo decorativo de fondo -->
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[10%] left-[20%] w-[40%] h-[40%] rounded-full bg-orange-600/10 blur-[120px]"></div>
+        <div class="absolute bottom-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-pink-600/10 blur-[100px]"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
+        
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-neutral-800 mb-6 text-sm font-semibold text-orange-400">
+            <i data-lucide="star" class="w-4 h-4"></i>
+            <span>Nuestra Historia</span>
+          </div>
+          <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+            Nuestra <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">Esencia</span>
+          </h1>
+          <p class="text-lg text-neutral-400 max-w-2xl mx-auto">
+            En FRUIT JULS creemos en lo natural, lo auténtico y lo bien hecho. Conoce los pilares que nos impulsan cada día a llevar lo mejor de la naturaleza hasta tus manos.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Misión -->
+          <div class="bg-neutral-900 rounded-3xl p-8 border border-neutral-800 hover:border-orange-500/50 transition-colors group shadow-xl">
+            <div class="w-16 h-16 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="leaf" class="w-8 h-8 text-orange-500"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-white">Misión</h3>
+            <p class="text-neutral-400 leading-relaxed">
+              Ofrecer a nuestros clientes la mejor selección de frutas secas y
+              semillas, brindando snacks deliciosos, saludables y 100% naturales
+              que enriquezcan su día a día con energía y sabor inigualable.
+            </p>
+          </div>
+
+          <!-- Visión -->
+          <div class="bg-neutral-900 rounded-3xl p-8 border border-neutral-800 hover:border-blue-500/50 transition-colors group shadow-xl">
+            <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="eye" class="w-8 h-8 text-blue-500"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-white">Visión</h3>
+            <p class="text-neutral-400 leading-relaxed">
+              Ser la marca líder en México reconocida por la frescura, calidad
+              superior y el sabor vibrante de nuestros productos, promoviendo un
+              estilo de vida saludable que honra las raíces de nuestra tierra.
+            </p>
+          </div>
+
+          <!-- Valores -->
+          <div class="bg-neutral-900 rounded-3xl p-8 border border-neutral-800 hover:border-pink-500/50 transition-colors group shadow-xl">
+            <div class="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="heart" class="w-8 h-8 text-pink-500"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-white">Valores</h3>
+            <ul class="text-neutral-400 space-y-3 mt-4">
+              <li class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-pink-500 shadow-[0_0_10px_rgba(236,72,153,0.8)]"></span>
+                <span><strong class="text-white">Calidad:</strong> Selección minuciosa.</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]"></span>
+                <span><strong class="text-white">Natural:</strong> Sin conservadores.</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></span>
+                <span><strong class="text-white">Pasión:</strong> Amor por lo que hacemos.</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.8)]"></span>
+                <span><strong class="text-white">Identidad:</strong> 100% Hecho en México.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+          <!-- Logo/Name Footer -->
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">
+              FRUIT JULS
+            </span>
+          </div>
+
+          <!-- Copyright -->
+          <p class="text-neutral-500 text-sm text-center md:text-left">
+            &copy; <span id="year"></span> FRUIT JULS. Todos los derechos reservados. <br class="md:hidden" />
+            Hecho en México con amor.
+          </p>
+
+          <!-- Redes Sociales -->
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all">
+              <i data-lucide="facebook" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-500 hover:to-purple-500 hover:border-transparent transition-all">
+              <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-green-500 hover:border-green-500 transition-all">
+              <i data-lucide="phone" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- LOGIC SCRIPT -->
+    <script>
+      // Inicializar Lucide Icons
+      lucide.createIcons();
+
+      // Poner el año actual en el footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Lógica del Navbar (Cambio de fondo al hacer scroll)
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("bg-black/90", "backdrop-blur-md", "shadow-lg", "shadow-pink-500/10", "py-3");
+          navbar.classList.remove("bg-transparent", "py-5");
+        } else {
+          navbar.classList.add("bg-transparent", "py-5");
+          navbar.classList.remove("bg-black/90", "backdrop-blur-md", "shadow-lg", "shadow-pink-500/10", "py-3");
+        }
+      });
+
+      // Lógica del Menú Móvil
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuIcon = document.getElementById("menu-icon");
+      let isMenuOpen = false;
+
+      function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          mobileMenu.classList.remove("hidden");
+          menuIcon.setAttribute("data-lucide", "x");
+        } else {
+          mobileMenu.classList.add("hidden");
+          menuIcon.setAttribute("data-lucide", "menu");
+        }
+        lucide.createIcons(); // Refrescar icono
+      }
+
+      mobileMenuBtn.addEventListener("click", toggleMenu);
+    </script>
+  </body>
+</html>

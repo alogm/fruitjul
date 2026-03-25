@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preguntas Frecuentes | FRUIT JULS</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      ::selection {
+        background-color: #ec4899; /* pink-500 */
+        color: white;
+      }
+      
+      /* Animación suave para el acordeón (FAQ) */
+      .faq-content {
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+      }
+      .faq-content.open {
+        max-height: 500px; /* Un valor alto para que quepa cualquier texto */
+        opacity: 1;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-black text-neutral-200 font-sans">
+    
+    <!-- NAVBAR -->
+    <nav
+      id="navbar"
+      class="fixed w-full z-50 transition-all duration-300 bg-transparent py-5"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <!-- Logo Text -->
+          <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-500 to-blue-500 hover:opacity-80 transition-opacity">
+              FRUIT JULS
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-8 items-center">
+            <a href="index.html" class="text-neutral-300 hover:text-pink-400 transition-colors font-medium">Inicio</a>
+            <a href="nosotros.html" class="text-neutral-300 hover:text-orange-400 transition-colors font-medium">Nosotros</a>
+            <a href="productos.html" class="text-neutral-300 hover:text-green-400 transition-colors font-medium">Productos</a>
+            <!-- FAQ puede ir aquí si quieres añadirlo al menú general, o simplemente dejarlo enlazado desde el footer -->
+            <a href="faq.html" class="text-pink-400 transition-colors font-bold">FAQ</a>
+            <a href="contacto.html" class="text-neutral-300 hover:text-blue-400 transition-colors font-medium">Contacto</a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-btn" class="text-neutral-200 hover:text-white focus:outline-none">
+              <i id="menu-icon" data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-neutral-900 border-t border-neutral-800 absolute w-full left-0 top-full shadow-2xl">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="index.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-pink-400 hover:bg-neutral-800 rounded-md">Inicio</a>
+          <a href="nosotros.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-orange-400 hover:bg-neutral-800 rounded-md">Nosotros</a>
+          <a href="productos.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-green-400 hover:bg-neutral-800 rounded-md">Productos</a>
+          <a href="faq.html" class="block px-3 py-2 text-base font-bold text-pink-400 bg-neutral-800/50 rounded-md">FAQ</a>
+          <a href="contacto.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-blue-400 hover:bg-neutral-800 rounded-md">Contacto</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT: PREGUNTAS FRECUENTES -->
+    <main class="min-h-screen bg-neutral-950 relative pt-36 pb-24 border-b border-neutral-900">
+      
+      <!-- Decoración de fondo -->
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[10%] right-[10%] w-[30%] h-[30%] rounded-full bg-blue-600/10 blur-[120px]"></div>
+        <div class="absolute bottom-[20%] left-[10%] w-[40%] h-[40%] rounded-full bg-pink-600/10 blur-[100px]"></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        
+        <!-- Encabezado -->
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-neutral-800 mb-6 text-sm font-semibold text-pink-400">
+            <i data-lucide="help-circle" class="w-4 h-4"></i>
+            <span>Centro de Ayuda</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+            Preguntas <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">Frecuentes</span>
+          </h1>
+          <p class="text-lg text-neutral-400 max-w-2xl mx-auto">
+            Resolvemos tus dudas principales. Si no encuentras lo que buscas, no dudes en escribirnos a través de nuestra sección de contacto.
+          </p>
+        </div>
+
+        <!-- ACORDEÓN DE PREGUNTAS -->
+        <div class="space-y-4">
+          
+          <!-- SECCIÓN 1: Sobre los Productos -->
+          <h2 class="text-2xl font-bold text-white mb-6 mt-12 flex items-center gap-3">
+            <i data-lucide="leaf" class="text-green-500 w-6 h-6"></i> Sobre Nuestros Productos
+          </h2>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿Sus productos contienen conservadores o azúcar añadida?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>Nuestra línea de "Frutas Naturales" y "Nueces/Semillas" es 100% natural, sin azúcares añadidos ni conservadores artificiales. Únicamente nuestros productos de la línea "Enchilados" o mezclas específicas pueden contener aderezos (como sal, chiles secos o chamoy), los cuales se especifican claramente en los ingredientes de cada producto.</p>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿Cuánto tiempo duran frescos los productos?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>Gracias a nuestro proceso de deshidratación y empaque hermético, nuestras frutas secas y semillas tienen una vida útil de entre <strong>6 a 8 meses</strong> si se mantienen cerradas. Una vez abierto el empaque, recomendamos consumirlas en un plazo de 3 a 4 semanas y mantenerlas en un lugar fresco, seco y alejado de la luz solar directa para mantener su textura crujiente.</p>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿Tienen riesgo de contaminación cruzada (alergias)?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>Sí. Es importante mencionar que en nuestras instalaciones procesamos maní (cacahuate), almendras, nueces (pecana, castilla, macadamia) y otras semillas. Si tienes una alergia severa a los frutos secos, te recomendamos consultar con tu médico antes de consumir nuestros productos debido al riesgo de contaminación cruzada.</p>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿De dónde provienen sus ingredientes?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>Orgullosamente trabajamos de la mano con productores y agricultores locales en distintas regiones de México. Por ejemplo, nuestra nuez pecana proviene de Chihuahua, y gran parte de nuestros mangos de Sinaloa y Nayarit, garantizando un comercio justo y apoyando la economía local.</p>
+            </div>
+          </div>
+
+          <!-- SECCIÓN 2: Pedidos y Envíos -->
+          <h2 class="text-2xl font-bold text-white mb-6 mt-16 flex items-center gap-3">
+            <i data-lucide="truck" class="text-blue-500 w-6 h-6"></i> Pedidos y Envíos
+          </h2>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿A qué partes de la República Mexicana hacen envíos?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>¡Llegamos a donde tú estés! Hacemos envíos a <strong>todo el territorio nacional (México)</strong> a través de paqueterías reconocidas y seguras (Estafeta, FedEx o DHL, dependiendo tu código postal).</p>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿Cuánto cuesta el envío y tienen envío gratis?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>El costo de envío estándar es de $120.00 MXN a nivel nacional. Sin embargo, te ofrecemos <strong>¡Envío Gratis!</strong> en todas tus compras superiores a $899.00 MXN. Para la Ciudad de México y Área Metropolitana el envío local es de $80.00 MXN.</p>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿En cuánto tiempo recibiré mi pedido?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>Una vez que tu pago se acredita, nos toma de 1 a 2 días hábiles preparar tu pedido con la mayor frescura. Posteriormente, la paquetería tarda entre <strong>2 a 5 días hábiles</strong> en entregar en tu domicilio (dependiendo de la zona). Recibirás un correo con tu número de guía para rastrearlo en todo momento.</p>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿Qué métodos de pago aceptan?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>Para tu comodidad, aceptamos pagos mediante Tarjetas de Crédito y Débito (Visa, Mastercard, Amex), pagos seguros con PayPal, Transferencia Bancaria Electrónica (SPEI) y pagos en efectivo a través de tiendas OXXO.</p>
+            </div>
+          </div>
+
+          <!-- SECCIÓN 3: Mayoreo y Devoluciones -->
+          <h2 class="text-2xl font-bold text-white mb-6 mt-16 flex items-center gap-3">
+            <i data-lucide="package" class="text-orange-500 w-6 h-6"></i> Mayoreo y Políticas
+          </h2>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿Venden por mayoreo para eventos o negocios?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>¡Sí! Nos encanta ser parte de tus eventos (bodas, mesas de dulces) o abastecer tu negocio. Ofrecemos atractivos descuentos a partir de compras de 5 kg por producto o en facturaciones mayores a $3,000 MXN. Por favor, escríbenos a <strong>ventas@fruitjuls.com.mx</strong> y un asesor te enviará nuestro catálogo especial para mayoristas.</p>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿Puedo personalizar o armar mi propio mix de frutos secos?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>Por el momento vendemos los mixes ya establecidos en nuestro catálogo online para garantizar la mejor experiencia de sabor. Sin embargo, para pedidos corporativos o de eventos especiales (mínimo 50 unidades), podemos diseñar empaques y mezclas personalizadas. ¡Contáctanos!</p>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-colors">
+            <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none faq-btn">
+              <span class="font-bold text-lg text-neutral-200">¿Qué hago si mi pedido llega dañado o incorrecto?</span>
+              <i data-lucide="chevron-down" class="text-pink-500 transition-transform duration-300 w-5 h-5 faq-icon"></i>
+            </button>
+            <div class="faq-content px-6 text-neutral-400">
+              <p>Tu satisfacción es nuestra prioridad. Si recibiste un producto en mal estado, el empaque llegó roto o no es lo que pediste, por favor envíanos un correo a <strong>hola@fruitjuls.com.mx</strong> dentro de las primeras 48 horas tras recibir tu paquete. Incluye fotografías del daño y tu número de pedido. Procederemos a enviarte un reemplazo sin costo adicional o realizar un reembolso.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Call to action -->
+        <div class="mt-20 text-center bg-gradient-to-br from-neutral-900 to-black p-8 rounded-3xl border border-neutral-800">
+          <h3 class="text-2xl font-bold mb-4">¿Aún tienes dudas?</h3>
+          <p class="text-neutral-400 mb-6">Nuestro equipo está listo para ayudarte con lo que necesites.</p>
+          <a href="contacto.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-transparent border-2 border-pink-500 text-pink-400 font-bold text-lg hover:bg-pink-500 hover:text-white transition-all">
+            <i data-lucide="mail" class="w-5 h-5"></i> Contáctanos Directamente
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">
+              FRUIT JULS
+            </span>
+          </div>
+          <p class="text-neutral-500 text-sm text-center md:text-left">
+            &copy; <span id="year"></span> FRUIT JULS. Todos los derechos reservados. <br class="md:hidden" />
+            Hecho en México con amor.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all">
+              <i data-lucide="facebook" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-500 hover:to-purple-500 hover:border-transparent transition-all">
+              <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-green-500 hover:border-green-500 transition-all">
+              <i data-lucide="phone" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- LOGIC SCRIPT -->
+    <script>
+      // Inicializar Lucide Icons
+      lucide.createIcons();
+
+      // Poner el año actual en el footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Lógica del Navbar
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("bg-black/90", "backdrop-blur-md", "shadow-lg", "shadow-pink-500/10", "py-3");
+          navbar.classList.remove("bg-transparent", "py-5");
+        } else {
+          navbar.classList.add("bg-transparent", "py-5");
+          navbar.classList.remove("bg-black/90", "backdrop-blur-md", "shadow-lg", "shadow-pink-500/10", "py-3");
+        }
+      });
+
+      // Lógica del Menú Móvil
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuIcon = document.getElementById("menu-icon");
+      let isMenuOpen = false;
+
+      function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          mobileMenu.classList.remove("hidden");
+          menuIcon.setAttribute("data-lucide", "x");
+        } else {
+          mobileMenu.classList.add("hidden");
+          menuIcon.setAttribute("data-lucide", "menu");
+        }
+        lucide.createIcons(); // Refrescar icono
+      }
+      mobileMenuBtn.addEventListener("click", toggleMenu);
+
+      // --- Lógica del Acordeón FAQ ---
+      const faqButtons = document.querySelectorAll('.faq-btn');
+
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const content = button.nextElementSibling;
+          const icon = button.querySelector('.faq-icon');
+          const isOpen = content.classList.contains('open');
+
+          // Opcional: Cerrar todos los demás antes de abrir este (Modo Acordeón estricto)
+          /*
+          document.querySelectorAll('.faq-content').forEach(c => {
+            c.classList.remove('open');
+            c.previousElementSibling.querySelector('.faq-icon').classList.remove('rotate-180');
+          });
+          */
+
+          // Toggle abrir/cerrar
+          if (isOpen) {
+            content.classList.remove('open');
+            icon.classList.remove('rotate-180'); // Girar flecha abajo
+          } else {
+            content.classList.add('open');
+            icon.classList.add('rotate-180'); // Girar flecha arriba
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

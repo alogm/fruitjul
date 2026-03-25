@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FRUIT JULS | El sabor vibrante de la naturaleza</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      ::selection {
+        background-color: #ec4899; /* pink-500 */
+        color: white;
+      }
+      /* Ocultar barra de scroll en elementos horizontales si es necesario */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+  </head>
+  <body class="min-h-screen bg-black text-neutral-200 font-sans overflow-x-hidden">
+    
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <!-- Logo Text -->
+          <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-500 to-blue-500 hover:opacity-80 transition-opacity">
+              FRUIT JULS
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-8 items-center">
+            <!-- Página activa resaltada -->
+            <a href="index.html" class="text-pink-400 transition-colors font-bold border-b-2 border-pink-500 pb-1">Inicio</a>
+            <a href="nosotros.html" class="text-neutral-300 hover:text-orange-400 transition-colors font-medium">Nosotros</a>
+            <a href="productos.html" class="text-neutral-300 hover:text-green-400 transition-colors font-medium">Productos</a>
+            <a href="faq.html" class="text-neutral-300 hover:text-pink-400 transition-colors font-medium">FAQ</a>
+            <a href="contacto.html" class="text-neutral-300 hover:text-blue-400 transition-colors font-medium">Contacto</a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-btn" class="text-neutral-200 hover:text-white focus:outline-none bg-neutral-900 p-2 rounded-lg border border-neutral-800">
+              <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-neutral-900 border-t border-neutral-800 absolute w-full left-0 top-full shadow-2xl">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="index.html" class="block px-3 py-2 text-base font-bold text-pink-400 bg-neutral-800/50 rounded-md">Inicio</a>
+          <a href="nosotros.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-orange-400 hover:bg-neutral-800 rounded-md">Nosotros</a>
+          <a href="productos.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-green-400 hover:bg-neutral-800 rounded-md">Productos</a>
+          <a href="faq.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-pink-400 hover:bg-neutral-800 rounded-md">FAQ</a>
+          <a href="contacto.html" class="block px-3 py-2 text-base font-medium text-neutral-300 hover:text-blue-400 hover:bg-neutral-800 rounded-md">Contacto</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION (Presentación Principal) -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-neutral-900">
+      <!-- Brillos de fondo -->
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-pink-600/20 blur-[120px]"></div>
+        <div class="absolute bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full bg-blue-600/20 blur-[120px]"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          
+          <!-- Text Content -->
+          <div class="text-center lg:text-left order-2 lg:order-1">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-neutral-800 mb-6 text-sm font-semibold text-green-400 shadow-lg">
+              <i data-lucide="leaf" class="w-4 h-4"></i>
+              <span>De la tierra a tu mesa</span>
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-black mb-6 leading-tight">
+              Frutos frescos,<br />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-500 to-blue-500">
+                sabor eterno.
+              </span>
+            </h1>
+            <p class="text-lg text-neutral-400 mb-8 max-w-xl mx-auto lg:mx-0">
+              Especialistas en la selección, deshidratación y distribución de las mejores frutas, nueces y semillas de México. Un snack saludable para cada momento del día.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a href="productos.html" class="px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 to-pink-600 text-white font-bold text-lg hover:shadow-lg hover:shadow-pink-500/40 transition-all transform hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i> Ver Catálogo
+              </a>
+              <a href="nosotros.html" class="px-8 py-4 rounded-full bg-transparent border-2 border-neutral-700 text-white font-bold text-lg hover:border-blue-500 hover:text-blue-400 transition-all text-center">
+                Conócenos
+              </a>
+            </div>
+          </div>
+
+          <!-- Logo Image (Con el recorte circular aplicado) -->
+          <div class="order-1 lg:order-2 flex justify-center relative">
+            <div class="absolute inset-0 bg-gradient-to-tr from-orange-500 via-pink-500 to-blue-500 rounded-full blur-2xl opacity-30 animate-pulse scale-90"></div>
+            
+            <div class="relative z-10 w-full max-w-md aspect-square rounded-full border-4 border-neutral-800 overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-500">
+              <img 
+                src="/img/logo2.png" 
+                alt="Logo FRUIT JULS" 
+                class="w-full h-full object-cover scale-[1.28]"
+                onerror="this.src='Gemini_Generated_Image_xkmfqsxkmfqsxkmf.jpg'"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- VENTAJAS RÁPIDAS -->
+    <section class="py-12 bg-neutral-950 border-b border-neutral-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-neutral-800">
+                <div class="p-4 flex flex-col items-center">
+                    <div class="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="text-green-500 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">Calidad Premium</h3>
+                    <p class="text-neutral-400 text-sm">Seleccionamos a mano cada fruto para garantizar textura y sabor impecables.</p>
+                </div>
+                <div class="p-4 flex flex-col items-center pt-8 md:pt-4">
+                    <div class="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="sun" class="text-orange-500 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">100% Natural</h3>
+                    <p class="text-neutral-400 text-sm">Sin conservadores ni azúcares artificiales añadidos. Pura energía natural.</p>
+                </div>
+                <div class="p-4 flex flex-col items-center pt-8 md:pt-4">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="truck" class="text-blue-500 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">Envíos a todo México</h3>
+                    <p class="text-neutral-400 text-sm">Empaque hermético que asegura frescura desde nuestras instalaciones hasta tu puerta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALENDARIO DE FRUTAS DE TEMPORADA -->
+    <section class="py-24 bg-black relative">
+        <!-- Decoración -->
+        <div class="absolute top-[20%] right-0 w-[40%] h-[40%] rounded-full bg-green-600/5 blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Calendario de <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-500">Temporada</span></h2>
+                <p class="text-neutral-400 max-w-2xl mx-auto">
+                    Conoce cuáles son las frutas en su punto máximo de frescura y dulzor según el mes del año. En Fruit Juls aprovechamos la naturaleza en su mejor momento.
+                </p>
+            </div>
+
+            <!-- Grid de 12 meses -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                
+                <!-- Enero -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-blue-500/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-blue-400 transition-colors">Enero</h3>
+                        <i data-lucide="snowflake" class="text-blue-500 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-blue-500">
+                        <li>Fresa</li>
+                        <li>Guayaba</li>
+                        <li>Mandarina</li>
+                    </ul>
+                </div>
+
+                <!-- Febrero -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-blue-400/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-blue-300 transition-colors">Febrero</h3>
+                        <i data-lucide="heart" class="text-pink-500 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-blue-400">
+                        <li>Mamey</li>
+                        <li>Papaya</li>
+                        <li>Piña</li>
+                    </ul>
+                </div>
+
+                <!-- Marzo -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-green-400/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-green-400 transition-colors">Marzo</h3>
+                        <i data-lucide="sun-dim" class="text-green-500 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-green-400">
+                        <li>Mango</li>
+                        <li>Melón</li>
+                        <li>Sandía</li>
+                    </ul>
+                </div>
+
+                <!-- Abril -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-green-500/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-green-500 transition-colors">Abril</h3>
+                        <i data-lucide="flower-2" class="text-pink-400 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-green-500">
+                        <li>Mango</li>
+                        <li>Tamarindo</li>
+                        <li>Toronja</li>
+                    </ul>
+                </div>
+
+                <!-- Mayo -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-yellow-400/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-yellow-400 transition-colors">Mayo</h3>
+                        <i data-lucide="sun" class="text-yellow-500 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-yellow-400">
+                        <li>Ciruela</li>
+                        <li>Durazno</li>
+                        <li>Mamey</li>
+                    </ul>
+                </div>
+
+                <!-- Junio -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-orange-400/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-orange-400 transition-colors">Junio</h3>
+                        <i data-lucide="thermometer-sun" class="text-orange-500 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-orange-400">
+                        <li>Pera</li>
+                        <li>Uva</li>
+                        <li>Higo</li>
+                    </ul>
+                </div>
+
+                <!-- Julio -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-orange-500/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-orange-500 transition-colors">Julio</h3>
+                        <i data-lucide="waves" class="text-blue-400 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-orange-500">
+                        <li>Tuna</li>
+                        <li>Manzana</li>
+                        <li>Granada</li>
+                    </ul>
+                </div>
+
+                <!-- Agosto -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-red-400/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-red-400 transition-colors">Agosto</h3>
+                        <i data-lucide="umbrella" class="text-blue-500 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-red-400">
+                        <li>Guayaba</li>
+                        <li>Pera</li>
+                        <li>Uva</li>
+                    </ul>
+                </div>
+
+                <!-- Septiembre -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-red-500/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-red-500 transition-colors">Septiembre</h3>
+                        <i data-lucide="flag" class="text-green-600 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-red-500">
+                        <li>Granada</li>
+                        <li>Mandarina</li>
+                        <li>Membrillo</li>
+                    </ul>
+                </div>
+
+                <!-- Octubre -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-orange-600/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-orange-600 transition-colors">Octubre</h3>
+                        <i data-lucide="leafy-green" class="text-orange-600 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-orange-600">
+                        <li>Mandarina</li>
+                        <li>Tejocote</li>
+                        <li>Naranja</li>
+                    </ul>
+                </div>
+
+                <!-- Noviembre -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-purple-500/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-purple-400 transition-colors">Noviembre</h3>
+                        <i data-lucide="wind" class="text-gray-400 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-purple-500">
+                        <li>Caña</li>
+                        <li>Jícama</li>
+                        <li>Lima</li>
+                    </ul>
+                </div>
+
+                <!-- Diciembre -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 hover:border-blue-600/50 transition-colors group">
+                    <div class="flex justify-between items-center mb-3 border-b border-neutral-800 pb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-blue-500 transition-colors">Diciembre</h3>
+                        <i data-lucide="gift" class="text-red-500 w-4 h-4 opacity-50"></i>
+                    </div>
+                    <ul class="text-neutral-400 text-sm space-y-1.5 list-disc list-inside marker:text-blue-600">
+                        <li>Fresa</li>
+                        <li>Tejocote</li>
+                        <li>Mandarina</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION (Banner final) -->
+    <section class="py-20 bg-neutral-950 border-t border-neutral-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center mix-blend-overlay"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-4">¿Listo para probar el <span class="text-pink-500">sabor natural?</span></h2>
+                <p class="text-neutral-300 max-w-lg">Visita nuestro catálogo y descubre la variedad de frutas secas, nueces y semillas que tenemos preparadas para ti.</p>
+            </div>
+            <a href="productos.html" class="whitespace-nowrap px-8 py-4 rounded-full bg-white text-black font-black text-lg hover:bg-pink-500 hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_20px_rgba(236,72,153,0.5)] transform hover:scale-105">
+                Ir a la Tienda <i data-lucide="arrow-right" class="inline-block w-5 h-5 ml-1"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-neutral-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">
+              FRUIT JULS
+            </span>
+          </div>
+          <p class="text-neutral-500 text-sm text-center md:text-left">
+            &copy; <span id="year"></span> FRUIT JULS. Todos los derechos reservados. <br class="md:hidden" />
+            Hecho en México.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all"><svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:border-transparent transition-all"><svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-black hover:border-neutral-600 transition-all"><svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+             <a href="#" class="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-gradient-to-r hover:from-[#00f2fe] hover:via-black hover:to-[#fe0979] hover:border-transparent transition-all"><i data-lucide="music-2" class="w-5 h-5"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- LOGIC SCRIPT -->
+    <script>
+      lucide.createIcons();
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Efecto Navbar
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("bg-black/90", "backdrop-blur-md", "shadow-lg", "shadow-pink-500/10", "py-3");
+          navbar.classList.remove("bg-transparent", "py-5");
+        } else {
+          navbar.classList.add("bg-transparent", "py-5");
+          navbar.classList.remove("bg-black/90", "backdrop-blur-md", "shadow-lg", "shadow-pink-500/10", "py-3");
+        }
+      });
+
+      // Menú Móvil
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuIcon = document.getElementById("menu-icon");
+      let isMenuOpen = false;
+
+      mobileMenuBtn.addEventListener("click", () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          mobileMenu.classList.remove("hidden");
+          menuIcon.setAttribute("data-lucide", "x");
+        } else {
+          mobileMenu.classList.add("hidden");
+          menuIcon.setAttribute("data-lucide", "menu");
+        }
+        lucide.createIcons();
+      });
+    </script>
+  </body>
+</html>
